@@ -28,8 +28,11 @@ def impute_nan_with_mean(X):
 # Step 2 - compute_iqr_bounds (not yet solved)
 # TODO: implement
 
-# Step 3 - clip_columns (not yet solved)
-# TODO: implement
+# Step 3 - clip_columns
+def clip_columns(X, lower, upper):
+    # TODO: Clip every entry of a feature matrix to per-column lower/upper bounds.
+    X_clipped = np.clip(X, lower, upper)
+    return X_clipped
 
 # Step 4 - make_ratio_feature (not yet solved)
 # TODO: implement
