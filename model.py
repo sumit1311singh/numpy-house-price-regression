@@ -94,8 +94,6 @@ def make_shuffled_indices(n_samples, seed):
     # TODO: Create a reproducibly shuffled permutation of row indices.
     samples = np.arange(n_samples)
 
-    #print(samples)
-
     np.random.seed(seed)
     idx = np.random.permutation(n_samples)
     
