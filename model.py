@@ -203,9 +203,11 @@ def prepare_cleaned_features(X, iqr_k=1.5):
     return X_imputed_clipped
 
 # Step 20 - assemble_feature_matrix
+import numpy as np
+
 def assemble_feature_matrix(X_num, ratio_num_idx, ratio_den_idx, cat_labels=None):
     # TODO: build an extended feature matrix by appending a derived ratio...
-    ratio = make_ratio_feature(X_num[ratio_num_idx], X_num[ratio_den_idx])
+    ratio = make_ratio_feature(X_num[:, ratio_num_idx], X_num[:, ratio_den_idx])
 
     X_appended = append_column(X_num, ratio)
 
