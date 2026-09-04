@@ -240,8 +240,28 @@ def make_train_val_test(X, y, train_ratio, val_ratio, seed):
 
     return split_data_dict
 
-# Step 22 - standardize_and_add_bias (not yet solved)
-# TODO: implement
+# Step 22 - standardize_and_add_bias
+def standardize_and_add_bias(splits):
+    # TODO: Fit standardizer on train, transform all splits, prepend bias...
+    x_mean, x_std = fit_standardizer(splits['X_train'])
+
+    X_train_standardized = apply_standardizer(splits['X_train'], x_mean, x_std)
+    X_val_standardized = apply_standardizer(splits['X_val'], x_mean, x_std)
+    X_test_standardized = apply_standardizer(splits['X_test'], x_mean, x_std)
+
+    X_train_b = add_bias_column(X_train_standardized)
+    X_val_b = add_bias_column(X_val_standardized)
+    X_test_b = add_bias_column(X_test_standardized)
+
+    std_splits = dict()
+    std_splits['X_train'] = X_train_b
+    std_splits['y_train'] = splits['y_train']
+    std_splits['X_val'] = X_val_b
+    std_splits['y_val'] = splits['y_val']
+    std_splits['X_test'] = X_test_b
+    std_splits['y_test'] = splits['y_test']      
+
+    return std_splits, x_mean, x_std
 
 # Step 23 - evaluate_predictions (not yet solved)
 # TODO: implement
